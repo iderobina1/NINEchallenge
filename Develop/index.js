@@ -199,7 +199,7 @@ const questions = [
       return generateMarkdown(userAnswers);
   })
   .then(markdownContent => {
-    writeToFile(`
+    writeToFile(`B:/OneDrive - Edison Energy Inc/Courses/UM Bootcamp/0. Challenges/wk18-social-network-api/README2.md`, markdownContent);
   })
   .catch(err => {
       console.log('The error is: ', err);
