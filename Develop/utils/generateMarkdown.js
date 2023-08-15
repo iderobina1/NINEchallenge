@@ -1,5 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+const fs = require('fs');
+
 function renderLicenseBadge(license) {
 switch (license) {
   case 'Mozilla Public License 2.0':
@@ -48,13 +50,6 @@ function renderLicenseSection(license) {
     </details>`;
 }
 
-function insertGif (relativePath) {
-  if (relativePath) {
-    return `![Brief GIF/video showing how to use application.](./${relativePath})`;
-  } else return 'No GIF/video was supplied';
-
-}
-
 function appRunCommand(runCommand){
   if(runCommand === undefined){
     return `
@@ -95,7 +90,6 @@ function generateMarkdown(data) {
   ${appRunCommand(data.runCommand)}
   ## Usage
   ${data.projectUsage}<br>
-  ${insertGif(data.gifPath)}
   ## License
   ${renderLicenseSection(data.projectLicense)}
   Legalese borrowed from ${renderLicenseLink(data.projectLicense)}.

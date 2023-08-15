@@ -8,12 +8,12 @@ const questions = [
     {
       type: 'input',
       name: 'name',
-      message: '(required) What is your full name?',
+      message: '(required) What is your name?',
       validate: nameInput => {
           if (nameInput) {
             return true;
           } else {
-            console.log('Please enter your full name!');
+            console.log('Please enter your name!');
             return false;
           }
       }
@@ -36,7 +36,7 @@ const questions = [
     {
       type: 'input',
       name: 'email',
-      message: '(required) What is your email address?',
+      message: '(required) What is your email?',
       validate: emailInput => {
           if (emailInput) {
             return true;
@@ -50,12 +50,12 @@ const questions = [
     {
       type: 'input',
       name: 'projectTitle',
-      message: '(required) Provide the title of the app to add it to the README.md file:',
+      message: '(required) What is your project title:',
       validate: projectTitleInput => {
           if (projectTitleInput) {
             return true;
           } else {
-            console.log('Please enter your project\'s title!');
+            console.log('Please enter your projects title!');
             return false;
           }
       }
@@ -64,7 +64,7 @@ const questions = [
     {
       type: 'input',
       name: 'projectDescription',
-      message: '(required) Provide a description of your app, i.e. the what, why, and how:',
+      message: '(required) Provide a description of your app:',
       validate: descriptionInput => {
           if (descriptionInput) {
             return true;
@@ -74,112 +74,22 @@ const questions = [
           }
       }
     },
-    //confirmRunNormally
-    {
-      type: 'confirm',
-      name: 'confirmRunNormally',
-      message: '(required) From the terminal, does the app run with the typical "npm start" command?',
-      default: true
-    },
-    //runCommand
-    {
-      type: 'input',
-      name: 'runCommand',
-      message: `Type how the user should run the app from the terminal:`,
-      when: ({ confirmRunNormally }) => {
-        if (!confirmRunNormally) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      validate: descriptionInput => {
-        if (descriptionInput) {
-          return true;
-        } else {
-          console.log('Please enter something for how the user should run the app.');
-          return false;
-        }
-    }
-    },
-    //projectUsage
-    {
-      type: 'input',
-      name: 'projectUsage',
-      message: '(required) Provide usage instructions for your project. In the next prompt, you will be asked whether you wish to include a GIF into your README.md file\'s Usage section:',
-      validate: usageInfo => {
-          if (usageInfo) {
-            return true;
-          } else {
-            console.log('Please provide usage instructions!');
-            return false;
-          }
-      }
-    },
-    //confirmIncludeGif
-    {
-      type: 'confirm',
-      name: 'confirmIncludeGif',
-      message: 'Would you like to provide a relative path for inserting a short GIF showcasing usage into the README.md file you\'re creating? Note: Max upload size for GIF is 10MB.',
-      default: false
-    },
-    //gifPath
-    {
-      type: 'input',
-      name: 'gifPath',
-      message: `Provide the relative path, as viewed from the location of index.js. For example, if index.js is in root, and your app-gif-file is also located in root, enter the following: app-gif-file.gif
-  Note: Do not use spaces in your file name.`,
-      when: ({ confirmIncludeGif }) => {
-        if (confirmIncludeGif) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    },
+
     //projectLicense
     {
       type: 'list',
       name: 'projectLicense',
       message: 'What license is this project made under? Select one (default is none):',
-      choices: ['GNU GPLv3', 'GNU LGPLv3', 'GNU AGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense', 'none'],
-      default: 'none'
+      choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense', 'none'],
+      default: 'defaultLicense'
     },
-    //projectContributions
-    {
-      type: 'input',
-      name: 'projectContribute',
-      message: '(required) Provide guidelines for how others may contribute to this project:',
-      validate: contributeGuidelines => {
-          if (contributeGuidelines) {
-            return true;
-          } else {
-            console.log('Please provide usage instructions!');
-            return false;
-          }
-      }
-    },
-    //projectTests
-    {
-      type: 'input',
-      name: 'projectTests',
-      message: '(required) Provide test descriptions for this app:',
-      validate: contributeGuidelines => {
-          if (contributeGuidelines) {
-            return true;
-          } else {
-            console.log('Please provide test description!');
-            return false;
-          }
-      }
-    }
-  ];
-  
+]
+
   // TODO: Create a function to write README file
   function writeToFile(fileName, data) {
       fs.writeFile(fileName, data, err => {
         if(err) throw err;
-        console.log('Writing the README.md file is complete. Have a look at it!');
+        console.log(' Your README.md file is complete.');
       });
   }
   
@@ -191,16 +101,16 @@ const questions = [
   
   // Function call to initialize app
   init()
-  // The responses to the questions are stored in the answer object which is returned as a Promise.
   // The inquirer.prompt method returns a Promise which we handle by way of the .then method
   .then(userAnswers => {
-      // console.log('Answers are: ', userAnswers);
       // use the generateMarkdown function to take the user responses and create the README.md sections etc
       return generateMarkdown(userAnswers);
   })
+
   .then(markdownContent => {
-    writeToFile(`B:/OneDrive - Edison Energy Inc/Courses/UM Bootcamp/0. Challenges/wk18-social-network-api/README2.md`, markdownContent);
+    writeToFile(`./documents/bcmap/challenges/NINEchallenge/README.md`, markdownContent);
   })
+  
   .catch(err => {
       console.log('The error is: ', err);
   });
