@@ -110,7 +110,7 @@ const questions = [
   })
 
   .then(markdownContent => {
-    writeToFile(`./ninechallenge/Develop/readme.md`, markdownContent);
+    writeToFile('./utils/readme.md', markdownContent);
   })
   
   .catch(err => {
