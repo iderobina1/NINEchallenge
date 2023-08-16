@@ -3,6 +3,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
+
+
 const questions = [
     //name
     {
@@ -108,7 +110,7 @@ const questions = [
   })
 
   .then(markdownContent => {
-    writeToFile(`./documents/bcmap/challenges/NINEchallenge/README.md`, markdownContent);
+    writeToFile(`./ninechallenge/Develop/readme.md`, markdownContent);
   })
   
   .catch(err => {

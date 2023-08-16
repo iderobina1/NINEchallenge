@@ -13,8 +13,8 @@ switch (license) {
   case 'Boost Software License 1.0':
     return '[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)';
   case 'The Unlicense':
-    return '![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)';
-  default:
+    return '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)';
+    default:
     return '';
 }
 }
@@ -41,7 +41,13 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  let licenseText = fs.readFileSync(`./utils/legal-text/${license}.txt`, 'utf8');
+  let thisYear = new Date().getFullYear();
+
+  let licenseFileName = license;
+  
+  // Construct the file path using the exact license filename
+  let licenseText = fs.readFileSync(`./utils/licenses/${licenseFileName}.txt`, 'utf8');
+  
   return `<p align="center">Copyright ${thisYear}</p>
     <p align="center">=======================================</p><br>
     <details>
@@ -49,7 +55,6 @@ function renderLicenseSection(license) {
     ${licenseText}
     </details>`;
 }
-
 function appRunCommand(runCommand){
   if(runCommand === undefined){
     return `
@@ -101,7 +106,7 @@ function generateMarkdown(data) {
   ${data.projectTests}
 
   ## Questions?
-  I enjoy hearing back about my work. You can reach me at ${data.email}.
+  Reach me at ${data.email}.
   Alternatively, contact me on my GitHub page <a href="https://github.com/${data.github}">here</a>.
   `;
 }
