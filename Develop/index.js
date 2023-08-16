@@ -85,6 +85,35 @@ const questions = [
       choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense', 'none'],
       default: 'defaultLicense'
     },
+
+//projectContributions
+{
+  type: 'input',
+  name: 'projectContribute',
+  message: '(required) Provide guidelines for how others may contribute to this project:',
+  validate: contributeGuidelines => {
+      if (contributeGuidelines) {
+        return true;
+      } else {
+        console.log('Please provide usage instructions!');
+        return false;
+      }
+  }
+},
+//projectTests
+{
+  type: 'input',
+  name: 'projectTests',
+  message: '(required) Provide test descriptions for this app:',
+  validate: contributeGuidelines => {
+      if (contributeGuidelines) {
+        return true;
+      } else {
+        console.log('Please provide test description!');
+        return false;
+      }
+  }
+}
 ]
 
   // TODO: Create a function to write README file

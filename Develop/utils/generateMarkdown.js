@@ -97,7 +97,7 @@ function generateMarkdown(data) {
   ${data.projectUsage}<br>
   ## License
   ${renderLicenseSection(data.projectLicense)}
-  Legalese borrowed from ${renderLicenseLink(data.projectLicense)}.
+  Legals from ${renderLicenseLink(data.projectLicense)}.
 
   ## Contribute
   ${data.projectContribute}
