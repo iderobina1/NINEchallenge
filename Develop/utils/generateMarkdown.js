@@ -93,8 +93,7 @@ function generateMarkdown(data) {
   \`\`\`
   Once the node_modules folder is created and all dependencies are downloaded, type the following in your terminal:
   ${appRunCommand(data.runCommand)}
-  ## Usage
-  ${data.projectUsage}<br>
+
   ## License
   ${renderLicenseSection(data.projectLicense)}
   Legals from ${renderLicenseLink(data.projectLicense)}.
@@ -107,7 +106,7 @@ function generateMarkdown(data) {
 
   ## Questions?
   Reach me at ${data.email}.
-  Alternatively, contact me on my GitHub page <a href="https://github.com/${data.github}">here</a>.
+  Or contact me on my GitHub page <a href="https://github.com/${data.github}">here</a>.
   `;
 }
 
